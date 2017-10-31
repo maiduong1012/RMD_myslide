@@ -1,0 +1,31 @@
+---
+title: "Interactive Paking Map"
+author: "Mai Duong"
+date: "10/31/2017"
+output: ioslides_presentation
+---
+```{r,echo = FALSE}
+library(leaflet)
+
+```
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Interactive Car Park Map of Bordeaux
+
+```{r, echo=FALSE}
+ParkingIcon <- makeIcon(
+  iconUrl = "http://www.icone-png.com/png/52/51975.png",
+  iconWidth = 40*215/230, iconHeight = 40,
+  iconAnchorX = 40*215/230/2, iconAnchorY = 40
+)
+
+df <- data.frame(lat = runif(200, min = 44.81, max = 44.86),
+                 lng = runif(200, min = -0.64, max = -0.56))
+df %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(icon = ParkingIcon, clusterOptions = markerClusterOptions())
+```
+
